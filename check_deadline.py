@@ -2,8 +2,8 @@
 #импорт модуля для работы с датами
 from datetime import datetime
 from datetime import date
-#определение текущей даты и запись в переменную issue_date
 
+#определение текущей даты и запись в переменную issue_date
 today = date.today()
 
 # вывод текущей даты
