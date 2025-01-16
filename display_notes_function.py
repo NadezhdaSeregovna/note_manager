@@ -11,13 +11,7 @@ def display_notes(notes):
     else:
         for i, notes in enumerate(notes, start=1):
             print(Fore.YELLOW + f"\nЗаметка {i}:")
-            print(Fore.GREEN + '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-            username = notes.get('Имя пользователя')
-            title = notes.get('Заголовок')
-            content = notes.get('Описание')
-            status = notes.get('Стаус')
-            created_date = notes.get('Дата создания')
-            issue_date = notes.get('Дэдлайн')
+            print(Fore.GREEN + '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')           
             print(Fore.CYAN + f"Имя пользователя: {notes['Имя пользователя']} \nЗаголовок: {notes['Заголовок']} "
                               f"\nОписание: {notes['Описание']} \nСтатус: {notes['Статус']} "
                               f"\nДата создания: {notes['Дата создания']} \nДедлайн: {notes['Дедлайн']}")
