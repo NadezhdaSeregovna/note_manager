@@ -21,15 +21,15 @@ def search_notes(notes, keyword=None, status=None):
         if keyword is not None:
             keyword = keyword.lower()
             # поиск в имени пользователя, заголовке или содержании
-            search_keyword = (keyword in note['Имя пользователя'].lower() or
-                              keyword in note['Заголовок'].lower() or
-                              keyword in note['Описание'].lower()
+            search_keyword = (keyword in note['username'].lower() or
+                              keyword in note['title'].lower() or
+                              keyword in note['content'].lower()
                               )
 
         # поиск в статусах
         if status is not None:
-            status = status.lower()
-            search_status = status in note['Статус'].lower()
+            search_status = status.lower() == note["status"]
+
 
         # поиск с учётом обоих условий
         if search_keyword and search_status:
@@ -41,9 +41,9 @@ def search_notes(notes, keyword=None, status=None):
         for i, note in enumerate(notes_search, 1):
             print(f"\nЗаметка {i}:")
             print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-            print(f"Имя пользователя: {note['Имя пользователя']} \nЗаголовок: {note['Заголовок']} "
-                  f"\nОписание: {note['Описание']} \nСтатус: {note['Статус']} "
-                  f"\nДата создания: {note['Дата создания']} \nДедлайн: {note['Дедлайн']}")
+            print(f"Имя пользователя: {note['username']} \nЗаголовок: {note['title']} "
+                  f"\nОписание: {note['content']} \nСтатус: {note['status']} "
+                  f"\nДата создания: {note['created_date']} \nДедлайн: {note['issue_date']}")
     else:
         print("Заметки, соответствующие запросу, не найдены.")
 
@@ -54,12 +54,12 @@ def search_notes(notes, keyword=None, status=None):
 # Список заметок
 # notes = []
 notes = [
-    {'Имя пользователя': 'Алексей', 'Заголовок': 'Список покупок', 'Описание': 'Купить продукты на неделю',
-     'Статус': 'новая', 'Дата создания': '27-11-2024', 'Дедлайн': '30-11-2024'},
-    {'Имя пользователя': 'Мария', 'Заголовок': 'Учеба', 'Описание': 'Подготовиться к экзамену',
-     'Статус': 'в процессе', 'Дата создания': '25-11-2024', 'Дедлайн': '01-12-2024'},
-    {'Имя пользователя': 'Иван', 'Заголовок': 'План работы', 'Описание': 'Завершить проект',
-     'Статус': 'выполнено', 'Дата создания': '20-11-2024', 'Дедлайн': '26-11-2024'}
+    {'username': 'Алексей', 'title': 'Список покупок', 'content': 'Купить продукты на неделю',
+     'status': 'новая', 'created_date': '27-11-2024', 'issue_date': '30-11-2024'},
+    {'username': 'Мария', 'title': 'Учеба', 'content': 'Подготовиться к экзамену',
+     'status': 'в процессе', 'created_date': '25-11-2024', 'issue_date': '01-12-2024'},
+    {'username': 'Иван', 'title': 'План работы', 'content': 'Завершить проект',
+     'status': 'выполнено', 'created_date': '20-11-2024', 'issue_date': '26-11-2024'}
 ]
 # запуск поиска
 while True:
@@ -82,3 +82,4 @@ while True:
     else:
         print('Ошибка ввода.')
         continue
+
